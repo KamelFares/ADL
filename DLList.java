@@ -14,6 +14,8 @@
  * - getLast(): returns the last element
  */
 
+import java.util.OptionalInt;
+
 public class DLList {
 
     private Node head;
@@ -147,18 +149,18 @@ public class DLList {
         return this.size == 0;
     }
 
-    public int getFirst() {
+    public OptionalInt getFirst() {
         if (this.isEmpty()) {
-            throw new RuntimeException("List is empty");
+            return OptionalInt.empty();
         }
-        return this.head.getData();
+        return OptionalInt.of(this.head.getData());
     }
 
-    public int getLast() {
+    public OptionalInt getLast() {
         if (this.isEmpty()) {
-            throw new RuntimeException("List is empty");
+            return OptionalInt.empty();
         }
-        return this.tail.getData();
+        return OptionalInt.of(this.tail.getData());
     }
 
     protected Node getHead() {

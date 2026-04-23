@@ -2,7 +2,7 @@
  * Authors: Student (Group 1)
  * Date: April 2026
  * Purpose: Represents a stack (Last-In-First-Out) data structure.
- * Public methods:
+  Public methods:
  * - push(int): adds an element to the top of the stack
  * - pop(): removes and returns the top element
  * - peek(): returns the top element without removing
@@ -11,7 +11,8 @@
  * - isEmpty(): checks if the stack is empty
  * - toDequeue(): transforms the stack into a dequeue
  */
-package main;
+
+import java.util.OptionalInt;
 
 public class Stack {
 
@@ -25,18 +26,18 @@ public class Stack {
         this.list.insert(data);
     }
 
-    public int pop() {
+    public OptionalInt pop() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+            return OptionalInt.empty();
         }
-        int data = this.list.getLast();
+        int data = this.list.getLast().getAsInt();
         this.list.deleteAt(this.list.getSize() - 1);
-        return data;
+        return OptionalInt.of(data);
     }
 
-    public int peek() {
+    public OptionalInt peek() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+            return OptionalInt.empty();
         }
         return this.list.getLast();
     }

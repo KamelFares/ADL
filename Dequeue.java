@@ -14,7 +14,9 @@
  * - isEmpty(): checks if the dequeue is empty
  * - toStack(): transforms the dequeue into a stack
  */
-package Dequeue;
+
+import java.util.OptionalInt;
+
 
 public class Dequeue {
 
@@ -32,34 +34,34 @@ public class Dequeue {
         this.list.insert(data);
     }
 
-    public int dequeueFirst() {
+    public OptionalInt dequeueFirst() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Dequeue is empty");
+            return OptionalInt.empty();
         }
-        int data = this.list.getFirst();
+        int data = this.list.getFirst().getAsInt();
         this.list.deleteAt(0);
-        return data;
+        return OptionalInt.of(data);
     }
 
-    public int dequeueLast() {
+    public OptionalInt dequeueLast() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Dequeue is empty");
+            return OptionalInt.empty();
         }
-        int data = this.list.getLast();
+        int data = this.list.getLast().getAsInt();
         this.list.deleteAt(this.list.getSize() - 1);
-        return data;
+        return OptionalInt.of(data);
     }
 
-    public int peekFirst() {
+    public OptionalInt peekFirst() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Dequeue is empty");
+            return OptionalInt.empty();
         }
         return this.list.getFirst();
     }
 
-    public int peekLast() {
+    public OptionalInt peekLast() {
         if (this.list.isEmpty()) {
-            throw new RuntimeException("Dequeue is empty");
+            return OptionalInt.empty();
         }
         return this.list.getLast();
     }

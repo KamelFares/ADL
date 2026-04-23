@@ -10,6 +10,8 @@
  * - testTransformations(): tests dequeue to stack and stack to dequeue conversions
  */
 
+import java.util.OptionalInt;
+
 public class Test {
 
     private static final int[] TEST_DATA = {5, 12, 3, 27, 8, 15, 42, 1, 88, 33, 19};
@@ -45,8 +47,8 @@ public class Test {
         System.out.println("   List: " + list.traverse());
         System.out.println("   Size: " + list.getSize());
         System.out.println("2. Testing getFirst() and getLast()");
-        System.out.println("   First element: " + list.getFirst());
-        System.out.println("   Last element: " + list.getLast());
+        System.out.println("   First element: " + formatOptionalInt(list.getFirst()));
+        System.out.println("   Last element: " + formatOptionalInt(list.getLast()));
         System.out.println("3. Testing insertAt()");
         list.insertAt(99, 5);
         System.out.println("   After insertAt(99, 5): " + list.traverse());
@@ -77,16 +79,16 @@ public class Test {
         System.out.println("   After enqueueFirst(100): " + dequeue.traverse());
         System.out.println("   Size: " + dequeue.getSize());
         System.out.println("3. Testing peekFirst() and peekLast()");
-        System.out.println("   First element: " + dequeue.peekFirst());
-        System.out.println("   Last element: " + dequeue.peekLast());
+        System.out.println("   First element: " + formatOptionalInt(dequeue.peekFirst()));
+        System.out.println("   Last element: " + formatOptionalInt(dequeue.peekLast()));
         System.out.println("4. Testing dequeueFirst()");
-        int first = dequeue.dequeueFirst();
-        System.out.println("   Dequeued first: " + first);
+        OptionalInt first = dequeue.dequeueFirst();
+        System.out.println("   Dequeued first: " + formatOptionalInt(first));
         System.out.println("   After dequeueFirst(): " + dequeue.traverse());
         System.out.println("   Size: " + dequeue.getSize());
         System.out.println("5. Testing dequeueLast()");
-        int last = dequeue.dequeueLast();
-        System.out.println("   Dequeued last: " + last);
+        OptionalInt last = dequeue.dequeueLast();
+        System.out.println("   Dequeued last: " + formatOptionalInt(last));
         System.out.println("   After dequeueLast(): " + dequeue.traverse());
         System.out.println("   Size: " + dequeue.getSize());
         System.out.println("6. Testing isEmpty()");
@@ -102,15 +104,19 @@ public class Test {
         System.out.println("   Stack: " + stack.traverse());
         System.out.println("   Size: " + stack.getSize());
         System.out.println("2. Testing peek()");
-        System.out.println("   Top element: " + stack.peek());
+        System.out.println("   Top element: " + formatOptionalInt(stack.peek()));
         System.out.println("   Size after peek: " + stack.getSize());
         System.out.println("3. Testing pop()");
-        int popped = stack.pop();
-        System.out.println("   Popped element: " + popped);
+        OptionalInt popped = stack.pop();
+        System.out.println("   Popped element: " + formatOptionalInt(popped));
         System.out.println("   After pop(): " + stack.traverse());
         System.out.println("   Size: " + stack.getSize());
         System.out.println("4. Testing isEmpty()");
         System.out.println("   Is empty: " + stack.isEmpty());
+    }
+
+    private static String formatOptionalInt(OptionalInt value) {
+        return value.isPresent() ? String.valueOf(value.getAsInt()) : "empty";
     }
 
     private static void testTransformations() {

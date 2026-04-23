@@ -10,7 +10,7 @@
  * - getPrev(): returns the previous node reference
  * - setPrev(Node): sets the previous node reference
  */
-package main;
+
 
 public class Node {
 
