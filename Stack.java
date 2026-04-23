@@ -56,13 +56,19 @@ public class Stack {
 
     public Dequeue toDequeue() {
         Dequeue dequeue = new Dequeue();
-        for (int i = 0; i < this.list.getSize(); i++) {
-            Node current = this.list.getHead();
-            for (int j = 0; j < i; j++) {
-                current = current.getNext();
-            }
-            dequeue.enqueueLast(current.getData());
-        }
-        return dequeue;
+        Stack temp = new Stack();
+
+    while (!this.isEmpty()) {
+        int value = this.pop().getAsInt();
+        temp.push(value);
     }
+
+    while (!temp.isEmpty()) {
+        int value = temp.pop().getAsInt();
+        dequeue.enqueueLast(value);
+        this.push(value);
+    }
+
+    return dequeue;
 }
+// ...existing code...
