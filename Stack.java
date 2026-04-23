@@ -1,0 +1,67 @@
+/*
+ * Authors: Student (Group 1)
+ * Date: April 2026
+ * Purpose: Represents a stack (Last-In-First-Out) data structure.
+ * Public methods:
+ * - push(int): adds an element to the top of the stack
+ * - pop(): removes and returns the top element
+ * - peek(): returns the top element without removing
+ * - traverse(): returns all elements as a string
+ * - getSize(): returns the number of elements
+ * - isEmpty(): checks if the stack is empty
+ * - toDequeue(): transforms the stack into a dequeue
+ */
+package main;
+
+public class Stack {
+
+    private DLList list;
+
+    public Stack() {
+        this.list = new DLList();
+    }
+
+    public void push(int data) {
+        this.list.insert(data);
+    }
+
+    public int pop() {
+        if (this.list.isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        int data = this.list.getLast();
+        this.list.deleteAt(this.list.getSize() - 1);
+        return data;
+    }
+
+    public int peek() {
+        if (this.list.isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        return this.list.getLast();
+    }
+
+    public String traverse() {
+        return this.list.traverse();
+    }
+
+    public int getSize() {
+        return this.list.getSize();
+    }
+
+    public boolean isEmpty() {
+        return this.list.isEmpty();
+    }
+
+    public Dequeue toDequeue() {
+        Dequeue dequeue = new Dequeue();
+        for (int i = 0; i < this.list.getSize(); i++) {
+            Node current = this.list.getHead();
+            for (int j = 0; j < i; j++) {
+                current = current.getNext();
+            }
+            dequeue.enqueueLast(current.getData());
+        }
+        return dequeue;
+    }
+}
