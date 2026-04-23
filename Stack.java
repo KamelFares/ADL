@@ -70,5 +70,4 @@ public class Stack {
     }
 
     return dequeue;
-}
-// ...existing code...
+}}
